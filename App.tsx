@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import '@expo/metro-runtime';
+import React from 'react';
+import { View } from 'react-native';
+import { PaperProvider, MD3LightTheme } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import BooksScreen from './src/screens/BooksScreen';
+
+const theme = {
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: '#007aff',
+    secondary: '#0056b3',
+  },
+};
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider style={{ flex: 1 }}>
+      <PaperProvider theme={theme}>
+        <View style={{ flex: 1 }}>
+          <BooksScreen />
+        </View>
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
